@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>Motor Grader Blade Ground Load Model</title>
+<meta name="generator" content="MATLAB 24.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2025-03-26">
+<meta name="DC.source" content="sm_motor_grader_BladeLoad.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h1>Motor Grader Blade Ground Load Model</h1>
+<!--introduction-->
+<p>
+<img vspace="5" hspace="5" src="sm_motor_grader_BladeLoad_Overview.png" alt=""> </p>
+<p>This example models the ground loads on a motor grader blade. The ground loads are deliberately modeled as abstractly as possible to limit the number of parameters to be tuned and so that the simulation runs as quickly as possible</p>
+<p>(<a href="matlab:web('Motor_Grader_Design_Overview.html')">return to Motor Grader Design with Simscape Overview</a>)</p>
+<!--/introduction-->
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#1">Model</a>
+</li>
+<li>
+<a href="#2">Motor Grader Blade Model</a>
+</li>
+<li>
+<a href="#3">Ground Forces on Blade</a>
+</li>
+<li>
+<a href="#4">Simulation Results: Blade Edge Above Ground</a>
+</li>
+<li>
+<a href="#5">Simulation Results: Blade Edge Below Ground</a>
+</li>
+</ul>
+</div>
+<h2 id="1">Model</h2>
+<p>
+<a href="matlab:open_system('sm_motor_grader_BladeLoad');">Open Model</a>
+</p>
+<img vspace="5" hspace="5" src="sm_motor_grader_BladeLoad_01.png" alt=""> <h2 id="2">Motor Grader Blade Model</h2>
+<p>The blade is modeled by directly referencing the CAD geometry using the File Solid block. The blade connects to the side shift actuator and the bracket that holds the blade.</p>
+<p>The forces on the blade from the ground can be configured in the Ground Forces subsystem. It can be configured to have no loads from the ground, only vertical forces, or load from scraping against the terrain.</p>
+<p>
+<a href="matlab:open_system('sm_motor_grader_BladeLoad');open_system('sm_motor_grader_BladeLoad/Blade','force');">Open Subsystem</a>
+</p>
+<img vspace="5" hspace="5" src="sm_motor_grader_BladeLoad_02.png" alt=""> <h2 id="3">Ground Forces on Blade</h2>
+<p>This subsystem applies a custom force to the blade.</p>
+<div>
+<ul>
+<li>Subsystem Calculate Blade load calculates the force to apply at the frames connected to the L and R ports.</li>
+<li>The External Force blocks apply the force at frames connected at the L and R ports</li>
+<li>The Variable Cylinder blocks provide a visual indication of each force applied by varying the size of a cylinder.</li>
+</ul>
+</div>
+<p>
+<a href="matlab:open_system('sm_motor_grader_BladeLoad');open_system('sm_motor_grader_BladeLoad/Blade/Ground%20Forces/Loads','force');">Open Subsystem</a>
+</p>
+<img vspace="5" hspace="5" src="sm_motor_grader_BladeLoad_03.png" alt=""> <h2 id="4">Simulation Results: Blade Edge Above Ground</h2>
+<p>The plots below show the loads applied at the ends of the blade. During the test, the blade is moved forward slowly and it is rotated about its own vertical axis. The blade starts slightly above the ground and its vertical axis is tipped slightly forward from vertical. As a result, only one end is below ground at any time and only one force is non-zero.</p>
+<img vspace="5" hspace="5" src="sm_motor_grader_BladeLoad_04.png" alt=""> <h2 id="5">Simulation Results: Blade Edge Below Ground</h2>
+<p>The plots below show the loads applied at the ends of the blade. During the test, the blade is moved forward slowly and it is rotated about its own vertical axis. The blade starts slightly below the ground and its vertical axis is tipped slightly forward from vertical. As a result, the total force is always non-zero and varies with the relative angle of the blade to its forward motion.</p>
+<img vspace="5" hspace="5" src="sm_motor_grader_BladeLoad_05.png" alt=""> <p class="footer">Copyright 2025 The MathWorks, Inc.<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2024b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+%% Motor Grader Blade Ground Load Model
+% 
+% <<sm_motor_grader_BladeLoad_Overview.png>>
+%
+% This example models the ground loads on a motor grader blade.  The
+% ground loads are deliberately modeled as abstractly as possible to 
+% limit the number of parameters to be tuned and so that the simulation
+% runs as quickly as possible
+%
+% (<matlab:web('Motor_Grader_Design_Overview.html') return to Motor Grader Design with Simscape Overview>)
+%
+% Copyright 2025 The MathWorks, Inc.
+
+%% Model
+%
+% <matlab:open_system('sm_motor_grader_BladeLoad'); Open Model>
+
+open_system('sm_motor_grader_BladeLoad')
+
+ann_h = find_system('sm_motor_grader_BladeLoad','MatchFilter',@Simulink.match.allVariants,'FindAll', 'on','type','annotation','Tag','ModelFeatures');
+for i = 1:length(ann_h)
+    set_param(ann_h(i),'Interpreter','off')
+end
+
+%% Motor Grader Blade Model
+%
+% The blade is modeled by directly referencing the CAD geometry using the
+% File Solid block. The blade connects to the side shift actuator and the
+% bracket that holds the blade.
+% 
+% The forces on the blade from the ground can be configured in the Ground
+% Forces subsystem.  It can be configured to have no loads from the ground,
+% only vertical forces, or load from scraping against the terrain.
+%
+% <matlab:open_system('sm_motor_grader_BladeLoad');open_system('sm_motor_grader_BladeLoad/Blade','force'); Open Subsystem>
+
+set_param('sm_motor_grader_BladeLoad/Blade','LinkStatus','none')
+open_system('sm_motor_grader_BladeLoad/Blade','force')
+
+%% Ground Forces on Blade
+%
+% This subsystem applies a custom force to the blade.
+%
+% * Subsystem Calculate Blade load calculates the force to apply at the
+% frames connected to the L and R ports.
+% * The External Force blocks apply the force at frames connected at the L
+% and R ports
+% * The Variable Cylinder blocks provide a visual indication of each force
+% applied by varying the size of a cylinder.  
+%
+% 
+% <matlab:open_system('sm_motor_grader_BladeLoad');open_system('sm_motor_grader_BladeLoad/Blade/Ground%20Forces/Loads','force'); Open Subsystem>
+
+set_param('sm_motor_grader_BladeLoad/Blade/Ground Forces/Loads','LinkStatus','none')
+open_system('sm_motor_grader_BladeLoad/Blade/Ground Forces/Loads','force')
+
+%% Simulation Results: Blade Edge Above Ground
+%
+% The plots below show the loads applied at the ends of the blade. During
+% the test, the blade is moved forward slowly and it is rotated about its
+% own vertical axis. The blade starts slightly above the ground and its
+% vertical axis is tipped slightly forward from vertical.  As a result,
+% only one end is below ground at any time and only one force is non-zero.
+
+set_param([bdroot '/Transform Orient Blade Geometry'],'TranslationCartesianOffset','[0.2844 0 0.3+0.05]');
+set_param([bdroot '/Blade'],'popup_blade_ground_contact','Loads');
+sim('sm_motor_grader_BladeLoad')
+sm_motor_grader_plot11bladegroundloads(logsout_motor_grader_BladeLoad);
+
+
+%% Simulation Results: Blade Edge Below Ground
+%
+% The plots below show the loads applied at the ends of the blade. During
+% the test, the blade is moved forward slowly and it is rotated about its
+% own vertical axis. The blade starts slightly below the ground and its
+% vertical axis is tipped slightly forward from vertical.  As a result,
+% the total force is always non-zero and varies with the relative angle of
+% the blade to its forward motion.
+
+set_param([bdroot '/Transform Orient Blade Geometry'],'TranslationCartesianOffset','[0.2844 0 0.3-0.05]');
+sim('sm_motor_grader_BladeLoad')
+sm_motor_grader_plot11bladegroundloads(logsout_motor_grader_BladeLoad);
+
+%%
+
+%clear all
+close all
+bdclose all
+
+##### SOURCE END #####
+-->
+</body>
+</html>
