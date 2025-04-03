@@ -11,6 +11,9 @@ individual systems.
 * **Test powertrain architectures** with CVT models, including power split designs.
 * **Develop operator assist** algorithms within Simulink
 
+View on File Exchange: [![View on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/180647-motor-grader-design-with-simscape)  
+You can also open in MATLAB Online: [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=simscape/Motor-Grader-Simscape&project=Motor_Grader_Simscape.prj)
+
 ## Setup 
 Open the project file Motor_Grader_Simscape.prj to get started.
 
