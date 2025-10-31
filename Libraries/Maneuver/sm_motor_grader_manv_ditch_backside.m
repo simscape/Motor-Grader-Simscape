@@ -15,6 +15,10 @@ Maneuver.xMaxLat.Value = 3;
 Maneuver.vMinTarget.Value = 5;
 Maneuver.vGain.Value = 1;
 
+Maneuver.nPreviewPoints.Value = 5;
+Maneuver.nPreviewPoints.Units = '';
+Maneuver.nPreviewPoints.Comments = 'For Pure Pursuit Driver';
+
 % Heights for visualization (based on terrain)
 Maneuver.Trajectory.zbank.Value = interp2(SceneData.bank.x_vec+125,SceneData.bank.y_vec,SceneData.bank.z_mat',Maneuver.Trajectory.x.Value,Maneuver.Trajectory.y.Value)+1e-2;
 Maneuver.Trajectory.zgrid.Value = Maneuver.Trajectory.y.Value*0+1e-2;
