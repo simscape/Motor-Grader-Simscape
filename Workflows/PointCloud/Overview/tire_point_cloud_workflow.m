@@ -10,7 +10,7 @@
 % 
 % (<matlab:web('Motor_Grader_Design_Overview.html') return to Motor Grader Overview>)
 %
-% Copyright 2025 The MathWorks, Inc
+% Copyright 2025-2026 The MathWorks, Inc
 
 
 %% Read in the STL file, plot mesh

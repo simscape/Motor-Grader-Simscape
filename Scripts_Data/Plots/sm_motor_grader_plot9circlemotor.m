@@ -4,7 +4,7 @@ function fig_h=sm_motor_grader_plot9circlemotor(logsoutRes)
 %
 % The plot below shows the extension and force of the circle shift cylinder.
 
-% Copyright 2025 The MathWorks, Inc.
+% Copyright 2025-2026 The MathWorks, Inc.
 
 % Reuse figure if it exists, else create new figure
 figString = ['h1_' mfilename];

@@ -12,7 +12,7 @@
 % * *Test powertrain architectures* with CVT models, including power split designs.
 % * *Develop operator assist* algorithms within Simulink
 
-% Copyright 2025 The MathWorks, Inc.
+% Copyright 2025-2026 The MathWorks, Inc.
 
 %%
 % *Complete Motor Grader Model*

@@ -6,7 +6,7 @@ function fig_h=sm_motor_grader_plot10vehpos(logsoutRes)
 % rotational wheel speeds are scaled by the unloaded radius so they can be
 % compared with the translational speed of the vehicle.
 
-% Copyright 2025 The MathWorks, Inc.
+% Copyright 2025-2026 The MathWorks, Inc.
 
 % Reuse figure if it exists, else create new figure
 figString = ['h1_' mfilename];

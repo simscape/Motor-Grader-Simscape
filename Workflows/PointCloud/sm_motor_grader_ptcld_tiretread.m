@@ -21,7 +21,7 @@ function [ptcld_Loc,ptcld_hull] = sm_motor_grader_ptcld_tiretread(stlFile,radial
 %                  axial points are along z and x and y points match STL
 %    showPlot    (Optional) Set to 'plot' to show plots 
 %
-% Copyright 2025 The MathWorks, Inc
+% Copyright 2025-2026 The MathWorks, Inc
 
 plotStr = 'no';
 

@@ -4,7 +4,7 @@ function fig_h=sm_motor_grader_plot11bladegroundloads(logsoutRes)
 %
 % The plot below shows the loads on the blade due to contact with the ground.
 
-% Copyright 2025 The MathWorks, Inc.
+% Copyright 2025-2026 The MathWorks, Inc.
 
 % Reuse figure if it exists, else create new figure
 figString = ['h1_' mfilename];
